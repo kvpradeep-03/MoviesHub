@@ -11,3 +11,8 @@ body{
   color: #fff;
   font-family: 'Montserrat', 'Outfit', sans-serif;
 }
+
+.align-center{
+  display: flex;
+  align-items: center;
+}
