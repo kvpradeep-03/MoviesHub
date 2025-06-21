@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import _ from 'lodash' //lodash is a sorting package used to sort with minimal code.
 import star from '../../assets/star.png'
+import Divider from '@mui/material/Divider';
 import './MovieList.css'
 import './MovieCard.css'
- 
+import fire from '../../assets/fire.png'
 import FilterGroup from './FilterGroup'
 import SortIcon from '@mui/icons-material/Sort';
 import { Box, IconButton, Menu, MenuItem, Zoom } from '@mui/material'
-import WhatshotIcon from '@mui/icons-material/Whatshot';
 
 
-const MovieList = () => {
+const NewRelease = () => {
 
     const [movies, setMovies] = useState([])
     const [minRating, setMinRating] = useState(0)
@@ -33,10 +33,13 @@ const MovieList = () => {
     }, [])
 
     const fetchMovies = async () => {
-        const response = await fetch("https://api.themoviedb.org/3/movie/popular?api_key=f5f93f9ee89c6f6e2d5892ecf2987379")
+        const response = await fetch("https://api.themoviedb.org/3/movie/now_playing?api_key=f5f93f9ee89c6f6e2d5892ecf2987379")
         const data = await response.json()
         setMovies(data.results)
         setFilterMovies(data.results)
+        console.log(`New Release: `, data.results);
+     
+   
     }
 
     const handleFilter = (rate) => {
@@ -59,7 +62,7 @@ const MovieList = () => {
         const { name, value } = e.target
         setSort(prev => ({ ...prev, [name]: value }))
     }
-    console.log(sort)
+  
 
 
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -74,12 +77,12 @@ const MovieList = () => {
     return (
         <>
             {/**
-             * popular movies
+             * Trending movies
              */}
             <header className="movie-list-header">
-                <h3 className="movie-list-heading">
-                    Popular <WhatshotIcon sx={{ ml: 2, alignItems: 'center' }}/>
-                </h3>
+                <h2 className="movie-list-heading">
+                    New Release
+                </h2>
                 {/* 
                 <div className="movie-list">
                     <FilterGroup minRating={minRating} onRatingClick={handleFilter} ratings={[6, 7, 8]} />
@@ -152,7 +155,7 @@ const MovieList = () => {
 
                         </a>
 
-                    ))} 
+                    ))}
                 </div>
 
             </div>
@@ -162,4 +165,4 @@ const MovieList = () => {
     )
 }
 
-export default MovieList
+export default NewRelease

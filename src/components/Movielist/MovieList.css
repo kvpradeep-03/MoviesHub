@@ -1,25 +1,40 @@
+.movie-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
+    
+}
+
 .movie-list-header {
+ 
     padding: 10px 30px;
     justify-content: space-between;
     margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    margin-top: 30px;
 }
 
 .movie-list-heading {
     font-size: 26px;
-    color: red;
+    color: rgb(255, 255, 255);
+    display: flex;
+     
 }
 
-.movie-list-filter{
+.movie-list-filter {
     list-style: none;
     font-size: 16px;
 }
 
-.movie-list-filter-items{
+.movie-list-filter-items {
     padding: 5px 10px;
     cursor: pointer;
 }
 
-.movie-sorting{
+.movie-sorting {
     border: none;
     outline: none;
     border-radius: 5px;
@@ -31,13 +46,22 @@
     margin: 0 10px;
 }
 
-.active{
+.active {
     border-bottom: 1px solid red;
     font-weight: 500;
 }
 
-.movie-cards{
+.movie-cards {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+    flex-wrap: nowrap;
+    /* Important */
+    overflow-x: auto;
+    gap: 30px;
+    padding: 20px;
+    margin: 20px 0;
+    scroll-behavior: smooth;
+}
+
+.movie-cards::-webkit-scrollbar {
+    display: none;
 }

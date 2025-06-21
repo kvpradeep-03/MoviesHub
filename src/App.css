@@ -2,3 +2,7 @@
   display: grid;
   grid-template-rows: 80px auto;
 }
+
+body {
+  overflow-x: hidden;
+}
