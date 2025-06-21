@@ -11,6 +11,9 @@ import HotelClassIcon from '@mui/icons-material/HotelClass';
 import { AppBar, Box, Button, IconButton, Menu, MenuItem, Toolbar, Typography, styled } from '@mui/material';
 import { theme } from '../../theme';
 import SwitchMode from '../../SwitchMode';
+import { Divider } from '@mui/material';
+import TheaterComedyIcon from '@mui/icons-material/TheaterComedy';
+
 
 const Navbar = ({ mode, setMode }) => {
     const [open, setOpen] = useState(false);
@@ -18,10 +21,11 @@ const Navbar = ({ mode, setMode }) => {
     const navItems = ['Home', 'About', 'Contact'];
 
     const StyledToolbar = styled(Toolbar)({
+
         display: "flex",
         justifyContent: "space-between",
         marginNBottom: "10px",
-    
+
     })
 
     return (
@@ -39,60 +43,67 @@ const Navbar = ({ mode, setMode }) => {
         //         <a href="#">Upcoming <UpcomingIcon className='nav-emoji' /></a>
         //     </div>
         // </nav>
+        <>
 
-        <AppBar sx={{ bgcolor: 'background.default', color: 'text.primary', position: 'sticky' }}>
-            <StyledToolbar >
-                <Typography
-                    variant="h6"
-                    component="div"
-                    sx={{ flexGrow: 1, display: { xs: 'block', sm: 'block' } }}
+            <Box sx={{ bgcolor: 'background.default', color: 'text.primary', position: 'sticky' }}>
+                <StyledToolbar >
+                    <Typography
+                        variant="h4"
+                        component="div"
+                        sx={{ flexGrow: 1, display: { xs: 'block', sm: 'block' } }}
+                    >
+                        MoviesHub  <TheaterComedyIcon sx={{ alignItems: 'center', fontSize: 'inherit' }} />
+                    </Typography>
+                    <Box sx={{ display: { xs: 'none', sm: 'block' }, color: 'text.primary' }}>
+
+                        <Button sx={{ color: 'inherit' }}>Home</Button>
+                        <Button sx={{ color: 'inherit' }}>My Account</Button>
+                        <Button sx={{ color: 'inherit' }}>Logout</Button>
+                        {/** TODO: Fix icon Glide issue*/}
+                        <Button sx={{ color: 'inherit' }}>
+                            <SwitchMode setMode={setMode} mode={mode} />
+                        </Button>
+
+                    </Box>
+                    <IconButton
+                        edge="end"
+                        onClick={e => setOpen(true)}
+                        sx={{ display: { sm: 'none' } }}
+                    >
+                        <MenuIcon />
+                    </IconButton>
+                </StyledToolbar>
+
+
+
+                <Menu
+                    id="demo-positioned-menu"
+                    aria-labelledby="demo-positioned-button"
+                    open={open}
+                    onClick={e => setOpen(false)}
+                    anchorOrigin={{
+                        vertical: 'top',
+                        horizontal: 'right',
+                    }}
+                    transformOrigin={{
+                        vertical: 'top',
+                        horizontal: 'right',
+                    }}
                 >
-                    MoviesHub
-                </Typography>
-                <Box sx={{ display: { xs: 'none', sm: 'block' }, color: 'text.primary' }}>
+                    <MenuItem sx={{ color: 'text.primary' }}>Home</MenuItem>
+                    <MenuItem>My account</MenuItem>
+                    <MenuItem>Logout</MenuItem>
 
-                    <Button sx={{ color: 'inherit' }}>Home</Button>
-                    <Button sx={{ color: 'inherit' }}>My Account</Button>
-                    <Button sx={{ color: 'inherit' }}>Logout</Button>
-                    {/** TODO: Fix icon Glide issue*/}
-                    <Button sx={{ color: 'inherit' }}>
-                        <SwitchMode setMode={setMode} mode={mode} />
-                    </Button>
+                    {/**TODO: Fix icon glide issue */}
+                    <SwitchMode sx={{ display: { xs: 'block', sm: 'none' } }} setMode={setMode} mode={mode} />
 
-                </Box>
-                <IconButton
-                    edge="end"
-                    onClick={e => setOpen(true)}
-                    sx={{ display: { sm: 'none' } }}
-                >
-                    <MenuIcon />
-                </IconButton>
-            </StyledToolbar>
+                </Menu>
+            </Box>
+            <Divider />
+
+        </>
 
 
-
-            <Menu
-                id="demo-positioned-menu"
-                aria-labelledby="demo-positioned-button"
-                open={open}
-                onClick={e => setOpen(false)}
-                anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                }}
-                transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                }}
-            >
-                <MenuItem sx={{ color: 'text.primary' }}>Home</MenuItem>
-                <MenuItem>My account</MenuItem>
-                <MenuItem>Logout</MenuItem>
-                <MenuItem sx={{ display: { xs: 'block', sm: 'none' } }}>
-                    <SwitchMode setMode={setMode} mode={mode} />
-                </MenuItem>
-            </Menu>
-        </AppBar>
     );
 };
 

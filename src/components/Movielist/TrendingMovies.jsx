@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import _ from 'lodash' //lodash is a sorting package used to sort with minimal code.
 import star from '../../assets/star.png'
-import Divider from '@mui/material/Divider';
 import './MovieList.css'
 import './MovieCard.css'
-import fire from '../../assets/fire.png'
-
 import FilterGroup from './FilterGroup'
 import SortIcon from '@mui/icons-material/Sort';
-import { Box, IconButton, Menu, MenuItem, Zoom } from '@mui/material'
-
+import { Box, IconButton, Menu, MenuItem, Typography, Zoom } from '@mui/material'
+import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+import { Divider } from '@mui/material'
 
 const TrendingMovies = () => {
 
@@ -39,7 +37,7 @@ const TrendingMovies = () => {
         setMovies(data.results)
         setFilterMovies(data.results)
         // console.log(`Trending Movies: `, data.results);
-   
+
     }
 
     const handleFilter = (rate) => {
@@ -58,11 +56,11 @@ const TrendingMovies = () => {
         }
     };
 
-    const handleSort = (e) => {
-        const { name, value } = e.target
-        setSort(prev => ({ ...prev, [name]: value }))
-    }
-  
+    // const handleSort = (e) => {
+    //     const { name, value } = e.target
+    //     setSort(prev => ({ ...prev, [name]: value }))
+    // }
+
 
 
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -76,15 +74,12 @@ const TrendingMovies = () => {
 
     return (
         <>
-            {/**
-             * Trending movies
-             */}
-            <header className="movie-list-header">
-                <h2 className="movie-list-heading">
-                    Trending
-                </h2>
+            <Box className="movie-list-header">
+                <Typography variant='h4' color='text.primary' className="movie-list-heading">
+                    Trending  <TrendingUpIcon sx={{ ml: 2, alignItems: 'center', fontSize: 'inherit' }} />
+                </Typography>
                 {/* 
-                <div className="movie-list">
+                <Box className="movie-list">
                     <FilterGroup minRating={minRating} onRatingClick={handleFilter} ratings={[6, 7, 8]} />
                     <select name="by" id="" className="movie-sorting" onChange={handleSort} value={sort.by}>
                         <option value="default">Sort by</option>
@@ -95,9 +90,9 @@ const TrendingMovies = () => {
                         <option value="asc">Ascending</option>
                         <option value="desc">Decending</option>
                     </select>
-                </div> */}
+                </Box> */}
 
-                <div>
+                <Box>
 
 
                     <IconButton
@@ -128,38 +123,38 @@ const TrendingMovies = () => {
 
                     </Menu>
 
-                </div>
+                </Box>
 
 
 
-            </header >
+            </Box >
 
 
-            <div className="movie-list">
+            <Box className="movie-list">
 
-                <div className="movie-cards">
+                <Box className="movie-cards">
                     {movies.length !== 0 && movies.map((movie) => (
                         <a href={`https://www.themoviedb.org/movie/${movie.id}`}
                             target='_blank' key={movie.id} className="movie-card">
                             <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt="poster" className="movie-poster" />
-                            <div className="movie-details">
+                            <Box className="movie-details">
                                 <h3 className="movie-detail-heading">{movie.title}</h3>
-                                <div className="align-center movie-date-rate">
+                                <Box className="align-center movie-date-rate">
                                     <p>{movie.release_date}</p>
                                     <p>{parseFloat(movie.vote_average.toFixed(1))}<img src={star} alt="start-emoji" className="card-emoji" /></p>
-                                </div>
+                                </Box>
                                 <p className="movie-description">
                                     {movie.overview.slice(0, 100) + "..."}
                                 </p>
-                            </div>
+                            </Box>
 
                         </a>
 
                     ))}
-                </div>
+                </Box>
 
-            </div>
-
+            </Box>
+            <Divider />
 
         </>
     )

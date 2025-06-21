@@ -11,12 +11,13 @@ import React from 'react'
 export const theme = createTheme({
     palette: {
         primary: {
-            main: "#FFFFFF",           // background color (very light)
-            contrastText: "#000000",   // text color that appears on top of `main`
+            main: "#FFFFFF",           // light background
+            contrastText: "#000000",   // black text
         },
         success: {
             main: "#000000",           // dark background
             contrastText: "#FFFFFF",   // white text
         }
     }
+
 });
